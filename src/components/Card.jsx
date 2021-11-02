@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Heading, Text } from '@chakra-ui/react';
 
-function Indicator({ color, title, text }) {
+function Card({ color, title, text }) {
   return (
     <Flex
       bg={color}
@@ -13,6 +13,7 @@ function Indicator({ color, title, text }) {
       color="white"
       direction="column"
       justify="center"
+      mr="27.5px"
     >
       <Heading fontSize="48px" fontWeight="300">
         {title}
@@ -24,10 +25,10 @@ function Indicator({ color, title, text }) {
   );
 }
 
-Indicator.propTypes = {
+Card.propTypes = {
   color: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 };
 
-export default Indicator;
+export default Card;
