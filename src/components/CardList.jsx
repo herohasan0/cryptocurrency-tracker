@@ -1,34 +1,36 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
+
 import { Flex } from '@chakra-ui/react';
+
 import Card from './Card';
 
-function CardList({ avgPrice, percent, serverTime }) {
+import fixed from '../utilities/fixed';
+
+import LiveDataContext from '../context/LiveDataContext';
+import dateToCurrentTime from '../utilities/dateToCurrentTime';
+
+function CardList() {
+  const { liveData } = useContext(LiveDataContext);
+
   return (
     <Flex justify="center">
       <Card
         color="#2E5BFF"
-        title={avgPrice}
+        title={fixed(liveData.w, 3)}
         text="Current Average Price"
       />
       <Card
         color="#F7C137"
-        title={percent}
+        title={fixed(liveData.p / 100, 2)}
         text="Price Change Percent"
       />
       <Card
         color="#8C54FF"
-        title={serverTime}
+        title={dateToCurrentTime(liveData.E)}
         text="Check Server Time"
       />
     </Flex>
   );
 }
-
-CardList.propTypes = {
-  avgPrice: PropTypes.string.isRequired,
-  percent: PropTypes.string.isRequired,
-  serverTime: PropTypes.string.isRequired,
-};
 
 export default CardList;
