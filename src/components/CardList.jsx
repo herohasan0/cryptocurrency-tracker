@@ -21,7 +21,7 @@ function CardList() {
       />
       <Card
         color="#F7C137"
-        title={fixed(liveData.p / 100, 2)}
+        title={fixed(liveData.P, 2)}
         text="Price Change Percent"
       />
       <Card
