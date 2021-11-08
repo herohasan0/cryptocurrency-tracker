@@ -18,11 +18,11 @@ const Text = ({ children, width }) => (
 function ListHead() {
   return (
     <Flex px="20px">
-      <Text width="102px">Symbol</Text>
-      <Text width="226px">Price</Text>
+      <Text width="102px">ID</Text>
+      <Text width="226px">PRICE</Text>
       <Text width="272px">QTY</Text>
       <Text width="193px">QUOTEQTY</Text>
-      <Text width="150px">Time</Text>
+      <Text width="150px">TIME</Text>
     </Flex>
   );
 }
