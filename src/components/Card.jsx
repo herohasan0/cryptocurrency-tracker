@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Flex, Heading, Text, Spinner } from '@chakra-ui/react';
