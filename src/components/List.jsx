@@ -50,7 +50,13 @@ function List() {
   }, [value]);
 
   return (
-    <Flex w="1136px" px="100px" direction="column" mt="20px">
+    <Flex
+      w="1136px"
+      px="100px"
+      direction="column"
+      mt="20px"
+      mb="140px"
+    >
       <FilterSection
         value={value}
         handleChange={handleChange}
