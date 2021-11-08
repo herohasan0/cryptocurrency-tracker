@@ -1,11 +1,17 @@
-/* eslint-disable no-undef */
-import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+
 import { createChart } from 'lightweight-charts';
 
-const Chart = ({ data }) => {
+import LiveDataContext from '../context/LiveDataContext';
+import HistoricalDataContext from '../context/HistoricalDataContext';
+
+import dateToLocaleDate from '../utilities/dateToLocaleDate';
+
+const Chart = () => {
+  const { historicalData } = useContext(HistoricalDataContext);
+  const { liveData } = useContext(LiveDataContext);
+
   useEffect(() => {
-    document.getElementById('chart').innerHTML = '';
     const chart = createChart(document.getElementById('chart'), {
       width: 1077,
       height: 274,
@@ -18,14 +24,20 @@ const Chart = ({ data }) => {
       lineWidth: 2,
     });
 
-    areaSeries.setData([...data]);
-  }, [data]);
+    areaSeries.setData([...historicalData]);
+
+    if (liveData.E) {
+      areaSeries.update({
+        time: dateToLocaleDate(liveData.E),
+        value: liveData.c,
+      });
+    }
+    return () => {
+      document.getElementById('chart').innerHTML = '';
+    };
+  }, [historicalData, liveData]);
 
   return <div id="chart" />;
-};
-
-Chart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Chart;
