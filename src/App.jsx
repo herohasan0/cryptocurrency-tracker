@@ -43,9 +43,10 @@ function App() {
     <SelectSymbolContext.Provider value={value}>
       <LiveDataContext.Provider value={liveDatavalue}>
         <HistoricalDataContext.Provider value={historicalDatavalue}>
-          <Center flexDir="column">
+          <Center as="main" flexDir="column">
             <CardList />
             <Flex
+              as="section"
               mt="20px"
               pt="120px"
               px="20px"

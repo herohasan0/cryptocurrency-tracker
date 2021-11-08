@@ -20,6 +20,7 @@ function ListItem({ symbol, price, lastQty, bidQty, closeTime }) {
 
   return (
     <Flex
+      as="li"
       bg="#fff"
       py="28.5px"
       px="20px"

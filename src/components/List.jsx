@@ -51,6 +51,7 @@ function List() {
 
   return (
     <Flex
+      as="section"
       w="1136px"
       px="100px"
       direction="column"
@@ -66,7 +67,7 @@ function List() {
       <Flex direction="column" mt="30px">
         <ListHead />
 
-        <Flex direction="column">
+        <Flex direction="column" as="ul">
           {React.Children.toArray(
             list.map((item) => (
               <ListItem

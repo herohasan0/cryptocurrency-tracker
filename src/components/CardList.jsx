@@ -13,7 +13,7 @@ function CardList() {
   const { liveData } = useContext(LiveDataContext);
 
   return (
-    <Flex justify="center">
+    <Flex as="section" justify="center">
       <Card
         color="#2E5BFF"
         title={fixed(liveData.w, 3)}
