@@ -4,6 +4,7 @@
     "no-undef": "off",
     "object-curly-newline": "off",
     "implicit-arrow-linebreak": "off",
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "react/jsx-one-expression-per-line": "off"
   }
 }
