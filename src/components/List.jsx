@@ -3,36 +3,26 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { Flex } from '@chakra-ui/react';
 
 import ListItem from './ListItem';
-import FilterSection from './FilterSection';
 import ListHead from './ListHead';
+import FilterSection from './FilterSection';
 
 import fixed from '../utilities/fixed';
-import TOKENS from '../constants/tokens';
+
+import settings from '../constants/settings';
 
 function List() {
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
 
   useEffect(() => {
-    setData([]);
-    const promises = TOKENS.map((symbol) =>
-      fetch(
-        `https://api.binance.com/api/v3/ticker/24hr?symbol=${symbol}`,
-      ),
-    );
-
-    Promise.all(promises.map((promise) => promise))
-      .then((allPromises) =>
-        allPromises.map((allResponses) => allResponses.json()),
-      )
-      .then((results) =>
-        results.map((result) =>
-          result.then((item) => {
-            setData((prev) => [...prev, item]);
-            setList((prev) => [...prev, item]);
-          }),
-        ),
-      );
+    fetch(
+      `https://api.binance.com/api/v3/trades?symbol=${settings.symbol}&limit=${settings.limit}`,
+    )
+      .then((res) => res.json())
+      .then((datax) => {
+        setData(datax);
+        setList(datax);
+      });
   }, []);
 
   const [value, setValue] = React.useState('');
@@ -44,7 +34,7 @@ function List() {
   const handleClick = useCallback(() => {
     setList(data);
     const searched = data.filter((item) =>
-      item.symbol.includes(value),
+      String(item.id).includes(value),
     );
     setList(searched);
   }, [value]);
@@ -66,19 +56,17 @@ function List() {
 
       <Flex direction="column" mt="30px">
         <ListHead />
-
         <Flex direction="column" as="ul">
-          {React.Children.toArray(
-            list.map((item) => (
-              <ListItem
-                symbol={item.symbol}
-                price={fixed(item.lastPrice, 2)}
-                lastQty={fixed(item.lastQty, 4)}
-                bidQty={fixed(item.bidQty, 4)}
-                closeTime={item.closeTime}
-              />
-            )),
-          )}
+          {list.map((item) => (
+            <ListItem
+              key={item.id}
+              id={item.id}
+              price={fixed(item.price, 2)}
+              qty={fixed(item.qty, 4)}
+              quoteQty={fixed(item.quoteQty, 4)}
+              time={item.time}
+            />
+          ))}
         </Flex>
       </Flex>
     </Flex>
