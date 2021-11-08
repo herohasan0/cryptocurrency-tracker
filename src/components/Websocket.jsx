@@ -13,7 +13,10 @@ function Websocket() {
     `wss://stream.binance.com:9443/ws/${lowerCased}@ticker`,
   );
 
+  const { setLiveData } = useContext(LiveDataContext);
+
   useEffect(() => {
+    setLiveData('');
     setSocketUrl(
       `wss://stream.binance.com:9443/ws/${lowerCased}@ticker`,
     );
@@ -22,8 +25,6 @@ function Websocket() {
   const { lastMessage } = useWebSocket(socketUrl, {
     shouldReconnect: () => true,
   });
-
-  const { setLiveData } = useContext(LiveDataContext);
 
   useEffect(() => {
     if (lastMessage !== null) {
