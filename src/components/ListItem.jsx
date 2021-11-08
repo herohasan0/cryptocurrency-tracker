@@ -1,3 +1,4 @@
+/* eslint-disable */
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -7,7 +8,7 @@ import dateToLocaleDate from '../utilities/dateToLocaleDate';
 import dateToCurrentTime from '../utilities/dateToCurrentTime';
 
 const Text = ({ children, width }) => (
-  <chakra.p align="center" fontSize="15px" width={width}>
+  <chakra.p fontSize="15px" width={width}>
     {children}
   </chakra.p>
 );
@@ -25,12 +26,13 @@ function ListItem({ id, price, qty, quoteQty, time }) {
       px="20px"
       alignItems="center"
       mt="10px"
+      justifyContent="space-around"
     >
-      <Text width="102px">{`#${id}`}</Text>
-      <Text width="226px">{`${price}$`}</Text>
-      <Text width="272px">{qty}</Text>
-      <Text width="193px">{quoteQty}</Text>
-      <Text width="160px">{convertedTime}</Text>
+      <Text width="238px">{`#${id}`}</Text>
+      <Text width="225px">{`${price}$`}</Text>
+      <Text width="212px">{qty}</Text>
+      <Text width="257px">{quoteQty}</Text>
+      <Text width="206px">{convertedTime}</Text>
     </Flex>
   );
 }
